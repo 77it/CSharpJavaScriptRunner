@@ -1,0 +1,10 @@
+from https://github.com/davidmarkclements/rfdc
+=> https://raw.githubusercontent.com/davidmarkclements/rfdc/master/index.js
+renamed to
+rfdc.js
+
+npm
+https://www.npmjs.com/package/rfdc
+
+docs
+https://medium.com/javascript-in-plain-english/how-to-deep-copy-objects-and-arrays-in-javascript-7c911359b089 (chapter 5)

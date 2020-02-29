@@ -1,0 +1,5 @@
+from
+https://github.com/lodash/lodash/tree/4.5.0-npm-packages/lodash.clonedeep
+-> https://raw.githubusercontent.com/lodash/lodash/4.5.0-npm-packages/lodash.clonedeep/index.js
+
+renamed in
