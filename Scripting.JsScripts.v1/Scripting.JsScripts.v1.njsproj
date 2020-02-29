@@ -43,7 +43,6 @@
     <Content Include="lib\myfs.ts" />
     <Content Include="lib\myrequire.js" />
     <Content Include="package.json" />
-    <Content Include="README.md" />
     <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
