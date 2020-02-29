@@ -1,7 +1,4 @@
-﻿using System;
-using Jint;
-
-namespace Scripting.Js.v1
+﻿namespace Scripting.Js.v1
 {
     public enum JsScriptRunnerType
     {

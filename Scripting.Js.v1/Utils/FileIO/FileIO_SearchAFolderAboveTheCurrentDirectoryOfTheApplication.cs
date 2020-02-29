@@ -1,5 +1,5 @@
-﻿using System.IO;
-using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
+using System.IO;
 
 namespace Scripting.Js.v1
 {

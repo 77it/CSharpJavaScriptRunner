@@ -1,10 +1,8 @@
-using System;
 using Scripting.Js.v1;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CSharpFunctionalExtensions;
+using System;
 using System.Collections.Generic;
 
-namespace Scripting.Tests
+namespace BenchmarksProject
 {
     public class ObjectCloning
     {
@@ -15,7 +13,7 @@ namespace Scripting.Tests
             if (runner is null) throw new ArgumentNullException(nameof(runner));
             Runner = runner;
 
-            Runner.Run(new Dictionary<string, string>(Scripting_TestSettings.MyRequireEs5.GetScript())["myrequire"]);  // execute myrequire
+            Runner.Run(new Dictionary<string, string>(Settings.MyRequireEs5.GetScript())["myrequire"]);  // execute myrequire
         }
 
         public void ObjectCloning_with_Stringify()

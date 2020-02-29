@@ -1,12 +1,10 @@
-﻿using System;
-using System.Security.Cryptography;
-using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Running;
-using BenchmarkDotNet.Configs;
-using Scripting.Tests;
+﻿using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Reports;
+using BenchmarkDotNet.Running;
+using Scripting.Tests;
+using System;
 
-namespace StartupProject
+namespace BenchmarksProject
 {
     class Program
     {

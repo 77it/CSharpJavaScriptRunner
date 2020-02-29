@@ -3,13 +3,13 @@
 // RESULTS 
 /*
 Time for 10_000 cycle
-|                                   Method |    Mean |    Error |   StdDev |  Median |       Gen 0 | Gen 1 | Gen 2 | Allocated |
-|----------------------------------------- |--------:|---------:|---------:|--------:|------------:|------:|------:|----------:|
-| ClearScript_ObjectCloning_with_Stringify | 1.876 s | 0.1915 s | 0.5647 s | 1.562 s |   5000.0000 |     - |     - |   8.12 MB |
-|    ClearScript_ObjectCloning_with_Lodash | 1.438 s | 0.0770 s | 0.2247 s | 1.373 s |   5000.0000 |     - |     - |   8.33 MB |
-|      ClearScript_ObjectCloning_with_rfdc | 1.684 s | 0.1191 s | 0.3511 s | 1.636 s |   5000.0000 |     - |     - |   8.11 MB |
-|        Jint_ObjectCloning_with_Stringify | 2.895 s | 0.2476 s | 0.7105 s | 2.524 s | 438000.0000 |     - |     - | 655.95 MB |
-|             Jint_ObjectCloning_with_rfdc | 2.706 s | 0.0532 s | 0.0444 s | 2.703 s | 363000.0000 |     - |     - | 546.12 MB |
+|                                   Method |       Mean |     Error |    StdDev |     Median |       Gen 0 | Gen 1 | Gen 2 | Allocated |
+|----------------------------------------- |-----------:|----------:|----------:|-----------:|------------:|------:|------:|----------:|
+| ClearScript_ObjectCloning_with_Stringify | 1,385.5 ms | 100.12 ms | 288.87 ms | 1,223.3 ms |   5000.0000 |     - |     - |   8.11 MB |
+|    ClearScript_ObjectCloning_with_Lodash | 1,082.0 ms |  21.61 ms |  46.98 ms | 1,074.5 ms |   5000.0000 |     - |     - |   8.31 MB |
+|      ClearScript_ObjectCloning_with_rfdc |   998.4 ms |  19.86 ms |  54.02 ms |   992.1 ms |   5000.0000 |     - |     - |   8.14 MB |
+|        Jint_ObjectCloning_with_Stringify | 1,968.2 ms |  11.97 ms |   9.34 ms | 1,965.7 ms | 438000.0000 |     - |     - | 655.95 MB |
+|             Jint_ObjectCloning_with_rfdc | 2,192.5 ms |   9.98 ms |   9.33 ms | 2,190.4 ms | 363000.0000 |     - |     - | 546.12 MB |
 
 old run, Time for 10_000 cycle
 |                                   Method |    Mean |    Error |   StdDev |       Gen 0 |     Gen 1 | Gen 2 | Allocated |
@@ -30,26 +30,22 @@ old run, Time for 10_000 cycle
 
 using BenchmarkDotNet.Attributes;
 using CSharpFunctionalExtensions;
-using System;
-using System.Data;
-using System.Collections.Immutable;
 using Scripting.Js.v1;
-using System.IO;
-using Scripting;
+using System;
 
-namespace Scripting.Tests
+namespace BenchmarksProject
 {
     // from https://benchmarkdotnet.org/articles/overview.html
     [MemoryDiagnoser]
     public class ObjectCloning_with_Stringify_rfdc_Lodash_Benchmark
     {
-        private const int loopCycle = 10000;
+        private const int loopCycle = 10_000;
 
         private ScriptingContext jsScriptingContext { get; set; }
 
         private void Init()
         {
-            Result<string> scriptsPath = FileIO.SearchAFolderAboveTheCurrentDirectoryOfTheApplication(Scripting_TestSettings.ScriptsPath_JsScripts); // find the folder with the scripts
+            Result<string> scriptsPath = FileIO.SearchAFolderAboveTheCurrentDirectoryOfTheApplication(Settings.ScriptsPath_JsScripts); // find the folder with the scripts
             if (scriptsPath.IsFailure) throw new InvalidOperationException("scripts folder not found");
             jsScriptingContext = ScriptingContext.ScriptingContextWithRealFs(scriptsPath.Value);
         }
@@ -58,7 +54,7 @@ namespace Scripting.Tests
         public void ClearScript_ObjectCloning_with_Stringify()
         {
             Init();
-            JsScriptRunner jsScriptRunner = JsScriptRunner.RunnerWithContext(JsScriptRunnerType.ClearScript, jsScriptingContext, Scripting_TestSettings.ScriptingContextName);
+            JsScriptRunner jsScriptRunner = JsScriptRunner.RunnerWithContext(JsScriptRunnerType.ClearScript, jsScriptingContext, Settings.ScriptingContextName);
             var testObj = new ObjectCloning(jsScriptRunner);
 
             for (int i = 0; i < loopCycle; i++)
@@ -71,7 +67,7 @@ namespace Scripting.Tests
         public void ClearScript_ObjectCloning_with_Lodash()
         {
             Init();
-            JsScriptRunner jsScriptRunner = JsScriptRunner.RunnerWithContext(JsScriptRunnerType.ClearScript, jsScriptingContext, Scripting_TestSettings.ScriptingContextName);
+            JsScriptRunner jsScriptRunner = JsScriptRunner.RunnerWithContext(JsScriptRunnerType.ClearScript, jsScriptingContext, Settings.ScriptingContextName);
             var testObj = new ObjectCloning(jsScriptRunner);
 
             testObj.DONT_WORK_WITH_JINT_ObjectCloning_with_Lodash__Init();
@@ -86,7 +82,7 @@ namespace Scripting.Tests
         public void ClearScript_ObjectCloning_with_rfdc()
         {
             Init();
-            JsScriptRunner jsScriptRunner = JsScriptRunner.RunnerWithContext(JsScriptRunnerType.ClearScript, jsScriptingContext, Scripting_TestSettings.ScriptingContextName);
+            JsScriptRunner jsScriptRunner = JsScriptRunner.RunnerWithContext(JsScriptRunnerType.ClearScript, jsScriptingContext, Settings.ScriptingContextName);
             var testObj = new ObjectCloning(jsScriptRunner);
 
             testObj.ObjectCloning_with_rfdc__Init();
@@ -101,7 +97,7 @@ namespace Scripting.Tests
         public void Jint_ObjectCloning_with_Stringify()
         {
             Init();
-            JsScriptRunner jsScriptRunner = JsScriptRunner.RunnerWithContext(JsScriptRunnerType.Jint, jsScriptingContext, Scripting_TestSettings.ScriptingContextName);
+            JsScriptRunner jsScriptRunner = JsScriptRunner.RunnerWithContext(JsScriptRunnerType.Jint, jsScriptingContext, Settings.ScriptingContextName);
             var testObj = new ObjectCloning(jsScriptRunner);
 
             for (int i = 0; i < loopCycle; i++)
@@ -114,7 +110,7 @@ namespace Scripting.Tests
         public void Jint_ObjectCloning_with_rfdc()
         {
             Init();
-            JsScriptRunner jsScriptRunner = JsScriptRunner.RunnerWithContext(JsScriptRunnerType.Jint, jsScriptingContext, Scripting_TestSettings.ScriptingContextName);
+            JsScriptRunner jsScriptRunner = JsScriptRunner.RunnerWithContext(JsScriptRunnerType.Jint, jsScriptingContext, Settings.ScriptingContextName);
             var testObj = new ObjectCloning(jsScriptRunner);
 
             testObj.ObjectCloning_with_rfdc__Init();

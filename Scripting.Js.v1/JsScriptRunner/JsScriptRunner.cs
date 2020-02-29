@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using CSharpFunctionalExtensions;
 using Jint;
 using Microsoft.ClearScript.V8;
+using System;
 using System.Collections.Generic;
-using CSharpFunctionalExtensions;
+using System.Linq;
 
 namespace Scripting.Js.v1
 {

@@ -1,11 +1,7 @@
-using System;
-using System.Data;
-using System.Collections.Immutable;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CSharpFunctionalExtensions;
-using System.IO;
-using System.Threading;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Scripting.Js.v1;
+using System;
 
 namespace Scripting.Tests
 {
