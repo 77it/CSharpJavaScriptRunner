@@ -2,8 +2,8 @@
 {
     public enum JsScriptRunnerType
     {
-        Jint = 0,
-        ClearScript,
-        ClearScriptDebugMode
+        ClearScript = 0,
+        ClearScriptDebugMode,
+        Jint
     }
 }

@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace Scripting.Js.v1
 {
+    /// <summary>
+    /// Run JavaScript files
+    /// </summary>
     public class JsScriptRunner
     {
         public Maybe<object> ScriptingContext { get; }
@@ -14,11 +17,19 @@ namespace Scripting.Js.v1
         private V8ScriptEngine ClearScriptEngine { get; }
         private JsScriptRunnerType Type { get; }
 
+        /// <summary>
+        /// Init a JavaScript runner without context.
+        /// In Debug mode, the script name will be the first row of the script, normalized.
+        /// </summary>
         public static JsScriptRunner RunnerWithoutContext(JsScriptRunnerType type)
         {
             return new JsScriptRunner(type: type, scriptingContext: null, contextName: null);
         }
 
+        /// <summary>
+        /// Init a JavaScript runner with context.
+        /// In Debug mode, the script name will be the first row of the script, normalized.
+        /// </summary>
         public static JsScriptRunner RunnerWithContext(JsScriptRunnerType type, object scriptingContext, string contextName)
         {
             if (scriptingContext is null) throw new ArgumentNullException(nameof(scriptingContext));

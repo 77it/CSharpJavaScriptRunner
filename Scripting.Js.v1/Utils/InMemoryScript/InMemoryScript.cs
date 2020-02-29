@@ -24,6 +24,11 @@ namespace Scripting.Js.v1
         private string ScriptPath { get; }
         private string ScriptValue { get; }
 
+        /// <summary>
+        /// Build a memory script object from a plaintext string
+        /// </summary>
+        /// <param name="path">The path parameter will be the key of the dictionary returned by GetScript()</param>
+        /// <param name="contents">Script content in plaintext</param>
         public static InMemoryScript FromPlainString(string path, string contents)
         {
             if (string.IsNullOrWhiteSpace(path)) throw new ArgumentException($"{nameof(path)} can't be null or whiteSpace");
@@ -31,6 +36,11 @@ namespace Scripting.Js.v1
             return new InMemoryScript(InMemoryScriptTypes.PlainString, path, contents);
         }
 
+        /// <summary>
+        /// Build a memory script object from a Base64 encoded string
+        /// </summary>
+        /// <param name="path">The path parameter will be the key of the dictionary returned by GetScript()</param>
+        /// <param name="contents">Script encoded in Base64</param>
         public static InMemoryScript FromTextFileEncodedInBase64(string path, string contents)
         {
             if (string.IsNullOrWhiteSpace(path)) throw new ArgumentException($"{nameof(path)} can't be null or whiteSpace");
@@ -39,9 +49,10 @@ namespace Scripting.Js.v1
         }
 
         /// <summary>
-        /// The path paramater (can be also "") is used to prepend a path to the returned paths taken from the zip file
+        /// Build a memory script object from a zip file encoded in Bae64
         /// </summary>
-        /// <returns></returns>
+        /// <param name="path">The path parameter (can be also "") is prepended to the path returned from the zip file to make the key of the dictionary returned by GetScript()</param>
+        /// <param name="contents">Zip file encoded in Base64</param>
         public static InMemoryScript FromZipFileEncodedInBase64(string path, string contents)
         {
             if (path is null) throw new ArgumentNullException(nameof(path));
@@ -56,6 +67,9 @@ namespace Scripting.Js.v1
             ScriptValue = scriptValue;
         }
 
+        /// <summary>
+        /// Return a dictionary usable to build a virtual filesystem; key of the dictionary will be the paths, values will be the script contents, unzipped and decoded to plaintext if needed
+        /// </summary>
         public IEnumerable<KeyValuePair<string, string>> GetScript()
         {
             if (Type == InMemoryScriptTypes.PlainString)
