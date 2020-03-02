@@ -1,6 +1,6 @@
 # C# JavaScript Runner
 
-This is a C# .NET Core project that shows usage of [ClearScript](https://github.com/microsoft/ClearScript/) and [Jint](https://github.com/sebastienros/jint) engines to run JavaScript code, using also other JavaScript libraries (as Node.js [@hapi/formula](https://www.npmjs.com/package/@hapi/formula) etc).
+This is a C# .NET Core project that shows usage of [ClearScript V8](https://github.com/microsoft/ClearScript/) and [Jint](https://github.com/sebastienros/jint) engines to run JavaScript code, using also other JavaScript libraries (as Node.js [@hapi/formula](https://www.npmjs.com/package/@hapi/formula) etc).
 
 Code is MIT licensed as ClearScript.
 
